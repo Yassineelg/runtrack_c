@@ -7,7 +7,7 @@
 // Parameters:
 //   - str: a pointer to a null-terminated string
 // Description: Allocates memory for a copy of the input string and copies it.
-char *my_strdup(const char *str)
+char *my_strdup(char *str)
 {
     // Calculate the length of the input string.
     size_t length;
