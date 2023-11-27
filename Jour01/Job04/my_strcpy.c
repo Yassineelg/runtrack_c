@@ -6,7 +6,7 @@
 //   - dest: a pointer to the destination null-terminated string
 //   - src: a pointer to the source null-terminated string
 // Description: Copies the source string into the destination string.
-void my_strcpy(char *dest, const char *src)
+void my_strcpy(char *dest, char *src)
 {
     while ((*dest++ = *src++));
 }
