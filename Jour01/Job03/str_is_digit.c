@@ -8,7 +8,7 @@
 int str_is_digit(const char *str)
 {
     while (*str) {
-        if (!char_is_digit(*str)) {
+        if (*str < '0' || *str > '9') {
             return 0; // Not a digit found.
         }
         ++str;
