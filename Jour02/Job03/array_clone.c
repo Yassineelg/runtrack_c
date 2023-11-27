@@ -5,14 +5,14 @@
 
 // Function: array_clone
 // Parameters:
-//   - arr: an array of strings (terminated by a NULL pointer)
+//   - strs: an array of strings (terminated by a NULL pointer)
 //   - n: an integer specifying the number of strings to clone
 // Description: Creates a new array of strings by cloning the first n strings from the input array.
 //              The new array is terminated by a NULL pointer.
 // Returns: A dynamically allocated array of strings.
-char **array_clone(char *arr[], int n) {
+char **array_clone(char **strs, int n) {
     // Check if the input array is not NULL.
-    if (!arr)
+    if (!strs)
         return NULL;
 
     // Allocate memory for the new array of strings.
@@ -21,10 +21,10 @@ char **array_clone(char *arr[], int n) {
         return NULL;
 
     // Copy each string from the input array to the new array.
-    for (int i = 0; i < n && arr[i]; i++) {
+    for (int i = 0; i < n && strs[i]; i++) {
         // Calculate the length of the current string.
         size_t length = 0;
-        while (arr[i][length]) {
+        while (strs[i][length]) {
             length++;
         }
 
@@ -41,7 +41,7 @@ char **array_clone(char *arr[], int n) {
 
         // Copy the string into the cloned array.
         for (int j = 0; j <= length; j++) {
-            clone[i][j] = arr[i][j];
+            clone[i][j] = strs[i][j];
         }
     }
 
