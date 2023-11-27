@@ -5,7 +5,7 @@
 // Parameters:
 //   - str: a pointer to a null-terminated string
 // Description: Returns the length of the given string.
-unsigned int my_strlen(const char *str)
+unsigned int my_strlen(char *str)
 {
     unsigned int length;
 
