@@ -1,7 +1,7 @@
 // File: my_putstr.c
 // Description: Implementation of the my_putstr function.
 
-void my_putchar(char c);
+#include <unistd.h>
 
 // Function: my_putchar
 // Parameters:
@@ -10,5 +10,5 @@ void my_putchar(char c);
 void my_putstr(const char *str)
 {
     while (*str)
-        my_putchar(*str++);
+        write(1, &*str++, 1);
 }
