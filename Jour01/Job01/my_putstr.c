@@ -7,7 +7,7 @@
 // Parameters:
 //   - str: a pointer to a null-terminated string
 // Description: Writes the given string to the standard output using my_putchar.
-void my_putstr(const char *str)
+void my_putstr(char *str)
 {
     while (*str)
         write(1, &*str++, 1);
