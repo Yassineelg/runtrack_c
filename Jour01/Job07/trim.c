@@ -8,7 +8,7 @@
 //   - str: a pointer to a null-terminated string
 // Description: Allocates memory for a trimmed copy of the input string (removing leading
 // and trailing whitespaces) and copies it.
-char *trim(const char *str)
+char *trim(char *str)
 {
     // Find the start of the actual content (skip leading whitespaces).
     while (*str && (*str == ' ' || *str == '\t' || *str == '\n'))
