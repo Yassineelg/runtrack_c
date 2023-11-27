@@ -2,37 +2,55 @@
 // Description: Implementation of the split function.
 
 #include <stdlib.h>
-#include <stdio.h>
 
 // Function: split
 // Parameters:
 //   - str: a pointer to a null-terminated string
 // Description: Splits the input string into an array of words, separating by spaces, tabs, and newline characters.
 // Returns: A dynamically allocated array of strings, ending with a NULL pointer.
-char** split(char* str) {
+char **split(char* str) {
     int i = 0, j = 0, k = 0;
     int length = 0;
+    int wordCount = 0;
 
-    // Calculate the length of the input string.
-    while (str[length] != '\0') {
+    // Calculate the length of the input string and count the number of words.
+    while (str[length]) {
+        if (str[length] == ' ' || str[length] == '\t' || str[length] == '\n') {
+            if (k > 0) {
+                wordCount++;
+                k = 0;
+            }
+        } else {
+            k++;
+        }
         length++;
     }
 
-    char** result = malloc((length / 2 + 1) * sizeof(char*));
+    // If the last word is present, increment the word count.
+    if (k > 0) {
+        wordCount++;
+    }
 
-    while (str[i] != '\0') {
+    // Allocate memory for the result array.
+    char** result = malloc((wordCount + 1) * sizeof(char*));
+
+    // Reset counters for actual processing.
+    i = 0;
+    k = 0;
+
+    // Process the input string.
+    while (str[i]) {
         if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n') {
             if (k > 0) {
                 // Allocate memory for the current word.
                 result[j] = malloc((k + 1) * sizeof(char));
 
                 // Copy the current word into the result.
-                for (int l = 0; l < k; l++) {
-                    result[j][l] = str[i - k + l];
-                }
+                char* dest = result[j];
+                for (int l = 0; l < k; l++)
+                    *dest++ = str[i - k + l];
+                *dest = '\0';
 
-                // Add null-terminator to the current word.
-                result[j][k] = '\0';
                 j++;
                 k = 0;
             }
@@ -42,17 +60,16 @@ char** split(char* str) {
         i++;
     }
 
+    // If the last word is present, allocate memory for it.
     if (k > 0) {
-        // Allocate memory for the last word.
         result[j] = malloc((k + 1) * sizeof(char));
 
         // Copy the last word into the result.
-        for (int l = 0; l < k; l++) {
-            result[j][l] = str[i - k + l];
-        }
+        char* dest = result[j];
+        for (int l = 0; l < k; l++)
+            *dest++ = str[i - k + l];
+        *dest = '\0';
 
-        // Add null-terminator to the last word.
-        result[j][k] = '\0';
         j++;
     }
 
