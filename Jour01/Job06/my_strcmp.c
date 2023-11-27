@@ -8,7 +8,7 @@
 // Description: Compares two strings and returns 0 if they are identical,
 // a negative value if the first string is less than the second, or a positive
 // value if the first string is greater than the second.
-int my_strcmp(const char *str1, const char *str2)
+int my_strcmp(char *str1, char *str2)
 {
     while (*str1 && *str1 == *str2)
         ++str1, ++str2;
